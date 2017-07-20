@@ -22,6 +22,11 @@ grad = zeros(size(theta));
 %       efficiently vectorized. For example, consider the computation
 %
 %           sigmoid(X * theta)
+
+
+h = sigmoid(X * theta);
+J = 1/m*(-y'*log(h) - (1-y')*log(1-h)) + lambda/(2*m)*([0 ; theta(2:end)]'*[0 ; theta(2:end)]);
+grad = 1/m*X'*(h-y)+ lambda/m*[0 ; theta(2 : end)];
 %
 %       Each row of the resulting matrix will contain the value of the
 %       prediction for that example. You can make use of this to vectorize
